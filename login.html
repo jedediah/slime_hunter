@@ -1,0 +1,51 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+<html>
+<head>
+<title>Minecraft Session Login</title>
+</head>
+
+<body style="width:800px; margin-left: auto; margin-right: auto; font-family: sans-serif;">
+
+<center>
+<h1>Minecraft Session Login</h1>
+
+<form action="https://login.minecraft.net" method="post">
+<input type="hidden" name="version" value="9999"/>
+<table border="0"
+  <tr>
+    <td align="right"><label for="user">Username:</label></td>
+    <td><input id="user" name="user"/></td>
+  </tr>
+  <tr>
+    <td align="right"><label for="password">Password:</label></td>
+    <td><input id="password" name="password" type="password"/></td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td><input type="submit" value="Login"/></td>
+  </tr>
+</table>
+</form>
+</center>
+
+<h2>What is this?</h2>
+
+<p>
+You can use this form to login to the Minecraft central server at login.minecraft.net, just as you do whenever you start the game.
+Your username and password are sent directly from your web browser to Mojang's server, over a secure connection (https), and nowhere else.
+</p>
+
+<p>
+After you successfully login, you will see something like this:
+<pre style="background-color: #ddd; padding: 24px;">
+1281688214000:a348b469d915a40c9eebd2b9919c1a39:your_username:8204407531530365141
+
+                                                             ^^^^^^^^^^^^^^^^^^^
+                                                               your session id
+</pre>
+
+The last number is your session ID, which you use to join servers. You get a new one every time you login.
+</p>
+
+</body>
+</html>
