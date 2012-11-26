@@ -1,0 +1,172 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+<html>
+<head>
+  <title>Minecraft Slime Finder</title>
+  <script src="prototype.js"></script>
+  <script>
+    Event.observe(window,'load',function() {
+      document.body.appendChild(new Element('script', {src: "slimes.js"}))
+    });
+  </script>
+
+  <style>
+  body, td {
+    font-family: sans-serif;
+    font-size: 12px;
+  }
+
+  #controls td {
+    padding: 10px;
+    font-size: 13px;
+  }
+
+  #nudger td {
+    padding: 0px;
+  }
+
+  #tooltip {
+    position: absolute;
+    visibility: hidden;
+
+    border: 1px solid #88f;
+    background-color: #ddf;
+
+    font-size: 12px;
+    padding: 2px;
+  }
+  
+  #map {
+    cursor: crosshair;
+    margin: 0px;
+    border: 1px solid #ccc;
+    border-collapse: collapse;
+  }
+
+  #map td {
+    border: 1px solid #ccc;
+  }
+  
+  /*
+  .chunk {
+    border-bottom: 1px solid #ccc;
+    border-right: 1px solid #ccc;
+  }*/
+
+  .coord {
+    font-size: 10px;
+    width: 80px;
+    height: 80px;
+    line-height: 9px;
+  }
+
+  #coords td {
+    font-size: 10px;
+    margin: 0px;
+    padding: 0px;
+  }
+  
+  .slime_chunk {
+    background-color: #8f8;
+  }
+  </style>
+
+</head>
+
+<body>
+<center>
+<table border="0"><tr><td valign="top" align="center">
+
+<table border="0" id="controls" style="padding-top: 30px;">
+<tr>
+  <td align="right">World Seed:</td>
+  <td><input id="seed"/> <button id="update">Update Map</button><br/><span id="actual_seed" style="font-size: 11px;">&nbsp;</span></td>
+</tr>
+<tr>
+  <td align="right">Map Center:</td>
+  <td>X=<input id="coord_x" size=4/> Z=<input id="coord_z" size=4/> <button id="jump">Go There</button></td>
+</tr>
+<tr>
+  <td align="right">Zoom:</td>
+  <td><button id="zoom_out">-</button> <button id="zoom_in">+</button></td>
+</tr>
+<tr>
+  <td align="right">Nudge:</td>
+  <td>
+    <table border="0" id="nudger">
+      <tr><td></td><td><button id="nudge_up">^</button></td><td></td><td rowspan="3" style="font-size: 12px; padding-left:20px;"><i>or click+drag<br/>the map</i></td></tr>
+      <tr><td><button id="nudge_left">&lt;</button></td><td></td><td><button id="nudge_right">&gt;</button></td></tr>
+      <tr><td></td><td><button id="nudge_down">v</button></td><td></td></tr>
+    </table>
+  </td>
+</tr>
+
+</table>
+
+</td><td rowspan="2">
+
+<table id="coords" border="0" cellspacing="4" cellpadding="0">
+<tr>
+  <td colspan="2" rowspan="2"></td>
+  <td colspan="3" align="center" style="font-size: 14px;">X &rarr;</td>
+  <td colspan="1" rowspan="2"></td>
+</tr>
+
+<tr>
+  <td align="left"   width="192" id="coord_x_tl"></td>
+  <td align="center" width="192" id="coord_x_tm"></td>
+  <td align="right"  width="193" id="coord_x_tr"></td>
+</tr>
+
+<tr height="192">
+  <td rowspan="3" valign="middle" width="16" style="font-size: 14px;">Z<br/>&darr;</td>
+  <td valign="top" align="right" width="32" id="coord_z_tl"></td>
+  <td colspan="3" rowspan="3">
+    <table id="map" border="1" cellspacing="0" cellpadding="0"></table>
+  </td>
+  <td valign="top" width="32" id="coord_z_tr"></td>
+</tr>
+
+<tr height="192">
+  <td valign="middle" align="right" id="coord_z_ml"></td>
+  <td valign="middle" id="coord_z_mr"></td>
+</tr>
+
+<tr height="193">
+  <td valign="bottom" align="right" id="coord_z_bl"></td>
+  <td valign="bottom" id="coord_z_br"></td>
+</tr>
+
+<tr>
+  <td colspan="2"></td>
+  <td align="left"   id="coord_x_bl"></td>
+  <td align="center" id="coord_x_bm"></td>
+  <td align="right"  id="coord_x_br"></td>
+  <td></td>
+</tr>
+
+</table>
+
+</td></tr>
+<tr><td valign="bottom" width="300" align="center" style="font-size: 12px">
+NOTE: This tool gives you the coordinates of the lines <em>between</em> chunks.
+If the coordinates are 16 to 32 then 31.9 is in the chunk and 32.1 is not. Get it?<br/>
+<br/>
+Minecraft Slime Hunter BETA<br/>
+by last_username<br/>
+<br/>
+discuss and report bugs <a href="http://www.minecraftforum.net/topic/666332-slime-hunter-find-slime-chunks/">here</a><br/>
+verify results <a href="http://mcslimes.appspot.com/">here</a><br/>
+<br/>
+<img src="slimes.png"/><br/>
+<br/>
+<a rel="license" href="http://creativecommons.org/licenses/by-nc/3.0/"><img alt="Creative Commons License" style="border-width:0" src="http://i.creativecommons.org/l/by-nc/3.0/80x15.png" /></a><br />
+<a rel="license" href="http://creativecommons.org/licenses/by-nc/3.0/" style="font-size: 10px;">Creative Commons Attribution-NonCommercial 3.0 Unported License</a>.
+
+</td></tr>
+
+</table>
+</center>
+
+<div id="tooltip"></div>
+</body>
+</html>
